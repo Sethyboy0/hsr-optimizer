@@ -33,6 +33,7 @@ export type Form = {
   mainPlanarSphere: any[]
   ornamentSets: any[]
   predictMaxedMainStat: boolean
+  predictMinMainStatLevel: number
   rankFilter: boolean
   relicSets: RelicSet[]
   statDisplay: string
