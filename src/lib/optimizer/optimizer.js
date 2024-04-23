@@ -36,7 +36,7 @@ export const Optimizer = {
     const preFilteredRelicsByPart = RelicFilters.splitRelicsByPart(relics)
 
     relics = RelicFilters.applyMainFilter(request, relics)
-    relics = RelicFilters.applyMaxedMainStatsFilter(request, relics)
+    relics = RelicFilters.applyMainStatsFilter(request, relics)
     relics = RelicFilters.applySetFilter(request, relics)
 
     // Post-split filters
@@ -110,7 +110,7 @@ export const Optimizer = {
       let relics = Utils.clone(DB.getRelics())
       RelicFilters.calculateWeightScore(request, relics)
       relics = relics.filter((x) => x.equippedBy == request.characterId)
-      relics = RelicFilters.applyMaxedMainStatsFilter(request, relics)
+      relics = RelicFilters.applyMainStatsFilter(request, relics)
       relics = RelicFilters.splitRelicsByPart(relics)
       RelicFilters.condenseRelicSubstatsForOptimizer(relics)
       Object.keys(relics).map((key) => relics[key] = relics[key][0])
