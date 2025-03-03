@@ -4869,6 +4869,76 @@ function getScoringMetadata(): Record<string, ScoringMetadata> {
 
         ...SPREAD_ORNAMENTS_2P_SUPPORT_WEIGHTS,
       },
+      simulation: {
+        parts: {
+          [Parts.Body]: [
+            Stats.EHR,
+            Stats.ATK_P,
+            Stats.CR,
+            Stats.CD,
+          ],
+          [Parts.Feet]: [
+            Stats.ATK_P,
+            Stats.SPD,
+          ],
+          [Parts.PlanarSphere]: [
+            Stats.ATK_P,
+            Stats.Fire_DMG,
+          ],
+          [Parts.LinkRope]: [
+            Stats.ERR,
+          ],
+        },
+        substats: [
+          Stats.EHR,
+          Stats.ATK_P,
+          Stats.ATK,
+          Stats.CR,
+          Stats.CD,
+        ],
+        comboTurnAbilities: [
+          NULL_TURN_ABILITY_NAME,
+          DEFAULT_ULT,
+          DEFAULT_SKILL,
+          DEFAULT_SKILL,
+          DEFAULT_SKILL,
+        ],
+        comboDot: 16,
+        relicSets: [
+          [Sets.PrisonerInDeepConfinement, Sets.PrisonerInDeepConfinement],
+          RELICS_2P_BREAK_EFFECT_SPEED,
+          ...SPREAD_RELICS_4P_GENERAL_CONDITIONALS,
+        ],
+        ornamentSets: [
+          Sets.FirmamentFrontlineGlamoth,
+          Sets.ForgeOfTheKalpagniLantern,
+          Sets.GiantTreeOfRaptBrooding,
+          ...SPREAD_ORNAMENTS_2P_SUPPORT,
+        ],
+        breakpoints: {
+          [Stats.EHR]: 1.40,
+        },
+        teammates: [
+          {
+            characterId: '1308', // Acheron
+            lightCone: '23024', // Along the Passing Shore
+            characterEidolon: 0,
+            lightConeSuperimposition: 1,
+          },
+          {
+            characterId: '1306', // Sparkle
+            lightCone: '23021', // Earthly Escapade
+            characterEidolon: 0,
+            lightConeSuperimposition: 1,
+          },
+          {
+            characterId: '1304', // Fugue
+            lightCone: '23023', // Inherently Unjust Destiny
+            characterEidolon: 0,
+            lightConeSuperimposition: 1,
+          },
+        ],
+      },
       presets: [
         PresetEffects.PRISONER_SET,
       ],
@@ -5147,15 +5217,97 @@ function getScoringMetadata(): Record<string, ScoringMetadata> {
       },
       sets: {
         ...SPREAD_RELICS_2P_SPEED_WEIGHTS,
-        ...SPREAD_RELICS_2P_BREAK_WEIGHTS,
-        [Sets.PasserbyOfWanderingCloud]: MATCH_2P_WEIGHT,
+        [Sets.PioneerDiverOfDeadWaters]: MATCH_2P_WEIGHT,
+        [Sets.FiresmithOfLavaForging]: MATCH_2P_WEIGHT,
         [Sets.IronCavalryAgainstTheScourge]: 1,
-        [Sets.ThiefOfShootingMeteor]: 1,
+        [Sets.ThiefOfShootingMeteor]: T2_WEIGHT,
+        [Sets.EagleOfTwilightLine]: 1,
+        [Sets.TheWindSoaringValorous]: 1,
+        [Sets.TheAshblazingGrandDuke]: T2_WEIGHT,
 
         ...SPREAD_ORNAMENTS_2P_SUPPORT_WEIGHTS,
-        [Sets.GiantTreeOfRaptBrooding]: 1,
         [Sets.ForgeOfTheKalpagniLantern]: 1,
         [Sets.TaliaKingdomOfBanditry]: 1,
+        [Sets.TheWondrousBananAmusementPark]: 1,
+        [Sets.InertSalsotto]: 1,
+      },
+      simulation: {
+        parts: {
+          [Parts.Body]: [
+            Stats.ATK_P,
+            Stats.CR,
+            Stats.CD,
+          ],
+          [Parts.Feet]: [
+            Stats.ATK_P,
+            Stats.SPD,
+          ],
+          [Parts.PlanarSphere]: [
+            Stats.ATK_P,
+            Stats.Fire_DMG,
+          ],
+          [Parts.LinkRope]: [
+            Stats.BE,
+            Stats.ERR,
+            Stats.ATK_P,
+          ],
+        },
+        substats: [
+          Stats.BE,
+          Stats.ATK_P,
+          Stats.ATK,
+          Stats.CR,
+          Stats.CD,
+        ],
+        comboTurnAbilities: [
+          NULL_TURN_ABILITY_NAME,
+          DEFAULT_ULT,
+          DEFAULT_FUA,
+          DEFAULT_SKILL,
+          DEFAULT_SKILL,
+          DEFAULT_SKILL,
+          DEFAULT_FUA,
+        ],
+        comboDot: 0,
+        errRopeEidolon: 0,
+        relicSets: [
+          [Sets.IronCavalryAgainstTheScourge, Sets.IronCavalryAgainstTheScourge],
+          [Sets.ThiefOfShootingMeteor, Sets.WatchmakerMasterOfDreamMachinations],
+          [Sets.TheWindSoaringValorous, Sets.TheWindSoaringValorous],
+          [Sets.TheAshblazingGrandDuke, Sets.TheAshblazingGrandDuke],
+          RELICS_2P_BREAK_EFFECT_SPEED,
+          ...SPREAD_RELICS_4P_GENERAL_CONDITIONALS,
+        ],
+        ornamentSets: [
+          Sets.ForgeOfTheKalpagniLantern,
+          Sets.TheWondrousBananAmusementPark,
+          Sets.TaliaKingdomOfBanditry,
+          Sets.DuranDynastyOfRunningWolves,
+          Sets.FirmamentFrontlineGlamoth,
+          Sets.InertSalsotto,
+          Sets.GiantTreeOfRaptBrooding,
+          ...SPREAD_ORNAMENTS_2P_SUPPORT,
+        ],
+        teammates: [
+          {
+            characterId: '8006', // Stelle
+            lightCone: '21004', // Memories
+            characterEidolon: 6,
+            lightConeSuperimposition: 5,
+          },
+          {
+            characterId: '1303', // Ruan Mei
+            lightCone: '23019', // Past self
+            characterEidolon: 0,
+            lightConeSuperimposition: 1,
+          },
+          {
+            characterId: '1225', // Fugue
+            lightCone: '21015', // Resolution Luka Sweat
+            characterEidolon: 0,
+            lightConeSuperimposition: 5,
+          },
+        ],
       },
       presets: [
         PresetEffects.BANANA_SET,
@@ -5163,7 +5315,7 @@ function getScoringMetadata(): Record<string, ScoringMetadata> {
         PresetEffects.VALOROUS_SET,
         PresetEffects.WARRIOR_SET,
       ],
-      sortOption: SortOption.BE,
+      sortOption: SortOption.COMBO,
       addedColumns: [SortOption.OHB, SortOption.HEAL],
       hiddenColumns: [SortOption.DOT],
     },
