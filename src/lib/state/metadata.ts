@@ -4518,13 +4518,73 @@ function getScoringMetadata(): Record<string, ScoringMetadata> {
           Constants.Stats.ATK_P,
         ],
       },
+      simulation: {
+        parts: {
+          [Parts.Body]: [
+            Stats.ATK_P,
+            Stats.CR,
+            Stats.CD,
+          ],
+          [Parts.Feet]: [
+            Stats.ATK_P,
+            Stats.SPD,
+          ],
+          [Parts.PlanarSphere]: [
+            Stats.ATK_P,
+            Stats.Fire_DMG,
+          ],
+          [Parts.LinkRope]: [
+            Stats.BE,
+            Stats.ERR,
+            Stats.ATK_P,
+          ],
+        },
+        substats: [
+          Stats.BE,
+          Stats.ATK_P,
+          Stats.ATK,
+          Stats.CR,
+          Stats.CD,
+        ],
+        comboAbilities: [NULL, ULT, FUA, SKILL, SKILL, SKILL, FUA],
+        comboDot: 0,
+        comboBreak: 1,
+        relicSets: [
+          [Sets.IronCavalryAgainstTheScourge, Sets.IronCavalryAgainstTheScourge],
+          ...SPREAD_RELICS_4P_GENERAL_CONDITIONALS,
+        ],
+        ornamentSets: [
+          Sets.ForgeOfTheKalpagniLantern,
+          Sets.TaliaKingdomOfBanditry,
+        ],
+        teammates: [
+          {
+            characterId: '8006', // Stelle
+            lightCone: '21004', // Memories
+            characterEidolon: 6,
+            lightConeSuperimposition: 5,
+          },
+          {
+            characterId: '1303', // Ruan Mei
+            lightCone: '23019', // Past self
+            characterEidolon: 0,
+            lightConeSuperimposition: 1,
+          },
+          {
+            characterId: '1301', // Gallagher
+            lightCone: '20015', // Multi
+            characterEidolon: 6,
+            lightConeSuperimposition: 5,
+          },
+        ],
+      },
       presets: [
         PresetEffects.BANANA_SET,
         PresetEffects.fnAshblazingSet(6),
         PresetEffects.VALOROUS_SET,
         PresetEffects.WARRIOR_SET,
       ],
-      sortOption: SortOption.BE,
+      sortOption: SortOption.COMBO,
       addedColumns: [SortOption.OHB, SortOption.HEAL],
       hiddenColumns: [SortOption.DOT],
     },
