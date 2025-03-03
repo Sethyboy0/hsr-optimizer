@@ -1,49 +1,45 @@
-import { ASHBLAZING_ATK_STACK } from 'lib/conditionals/conditionalConstants'
-import {
-  boostAshblazingAtkContainer,
-  gpuBoostAshblazingAtkContainer,
-} from 'lib/conditionals/conditionalFinalizers'
-import {
-  AbilityEidolon,
-  Conditionals,
-  ContentDefinition,
-  createEnum,
-} from 'lib/conditionals/conditionalUtils'
-import {
-  dynamicStatConversionContainer,
-  gpuDynamicStatConversion,
-} from 'lib/conditionals/evaluation/statConversion'
-import { HitDefinitionBuilder } from 'lib/conditionals/hitDefinitionBuilder'
-import {
-  ConditionalActivation,
-  ConditionalType,
-  Parts,
-  Stats,
-} from 'lib/constants/constants'
-import { wgslTrue } from 'lib/gpu/injection/wgslUtils'
-import { Source } from 'lib/optimization/buffSource'
-import { StatKey } from 'lib/optimization/engine/config/keys'
-import {
-  DamageTag,
-  ElementTag,
-  TargetTag,
-} from 'lib/optimization/engine/config/tag'
-import { ComputedStatsContainer } from 'lib/optimization/engine/container/computedStatsContainer'
-import { SortOption } from 'lib/optimization/sortOptions'
-import { PresetEffects } from 'lib/scoring/presetEffects'
-import { TsUtils } from 'lib/utils/TsUtils'
+import {ASHBLAZING_ATK_STACK} from 'lib/conditionals/conditionalConstants'
+import {boostAshblazingAtkContainer, gpuBoostAshblazingAtkContainer,} from 'lib/conditionals/conditionalFinalizers'
+import {AbilityEidolon, Conditionals, ContentDefinition, createEnum,} from 'lib/conditionals/conditionalUtils'
+import {dynamicStatConversionContainer, gpuDynamicStatConversion,} from 'lib/conditionals/evaluation/statConversion'
+import {HitDefinitionBuilder} from 'lib/conditionals/hitDefinitionBuilder'
+import {ConditionalActivation, ConditionalType, Parts, Sets, Stats,} from 'lib/constants/constants'
+import {wgslTrue} from 'lib/gpu/injection/wgslUtils'
+import {Source} from 'lib/optimization/buffSource'
+import {StatKey} from 'lib/optimization/engine/config/keys'
+import {DamageTag, ElementTag, TargetTag,} from 'lib/optimization/engine/config/tag'
+import {ComputedStatsContainer} from 'lib/optimization/engine/container/computedStatsContainer'
+import {SortOption} from 'lib/optimization/sortOptions'
+import {PresetEffects} from 'lib/scoring/presetEffects'
+import {TsUtils} from 'lib/utils/TsUtils'
 
-import { Eidolon } from 'types/character'
-import { CharacterConfig } from 'types/characterConfig'
-import { NumberToNumberMap } from 'types/common'
-import { CharacterConditionalsController } from 'types/conditionals'
-import { ScoringMetadata } from 'types/metadata'
-import {
-  OptimizerAction,
-  OptimizerContext,
-} from 'types/optimizer'
+import {Eidolon} from 'types/character'
+import {CharacterConfig} from 'types/characterConfig'
+import {NumberToNumberMap} from 'types/common'
+import {CharacterConditionalsController} from 'types/conditionals'
+import {ScoringMetadata, SimulationMetadata} from 'types/metadata'
+import {OptimizerAction, OptimizerContext,} from 'types/optimizer'
 
-import { AbilityKind } from 'lib/optimization/rotation/turnAbilityConfig'
+import {
+  AbilityKind,
+  DEFAULT_FUA,
+  DEFAULT_SKILL,
+  DEFAULT_ULT,
+  NULL_TURN_ABILITY_NAME
+} from 'lib/optimization/rotation/turnAbilityConfig'
+import {
+  RELICS_2P_BREAK_EFFECT_SPEED,
+  SPREAD_ORNAMENTS_2P_FUA,
+  SPREAD_ORNAMENTS_2P_SUPPORT,
+  SPREAD_RELICS_4P_GENERAL_CONDITIONALS
+} from "lib/scoring/scoringConstants";
+import {DanceDanceDance} from "lib/conditionals/lightcone/4star/DanceDanceDance";
+import {NeverForgetHerFlame} from "lib/conditionals/lightcone/5star/NeverForgetHerFlame";
+import {ResolutionShinesAsPearlsOfSweat} from "lib/conditionals/lightcone/4star/ResolutionShinesAsPearlsOfSweat";
+import {Fugue} from "lib/conditionals/character/1200/Fugue";
+import {TheDahlia} from "lib/conditionals/character/1300/TheDahlia";
+import {TrailblazerHarmonyStelle} from "lib/conditionals/character/8000/TrailblazerHarmony";
+
 export const LingshaEntities = createEnum('Lingsha', 'Fuyuan')
 export const LingshaAbilities: AbilityKind[] = [
   AbilityKind.BASIC,
@@ -354,6 +350,84 @@ const conditionals = (e: Eidolon, withContent: boolean): CharacterConditionalsCo
   }
 }
 
+const simulation = (): SimulationMetadata => ({
+  parts: {
+    [Parts.Body]: [
+      Stats.ATK_P,
+      Stats.CR,
+      Stats.CD,
+    ],
+    [Parts.Feet]: [
+      Stats.ATK_P,
+      Stats.SPD,
+    ],
+    [Parts.PlanarSphere]: [
+      Stats.ATK_P,
+      Stats.Fire_DMG,
+    ],
+    [Parts.LinkRope]: [
+      Stats.BE,
+      Stats.ERR,
+      Stats.ATK_P,
+    ],
+  },
+  substats: [
+    Stats.BE,
+    Stats.ATK_P,
+    Stats.ATK,
+    Stats.CR,
+    Stats.CD,
+  ],
+  comboTurnAbilities: [
+    NULL_TURN_ABILITY_NAME,
+    DEFAULT_ULT,
+    DEFAULT_FUA,
+    DEFAULT_SKILL,
+    DEFAULT_SKILL,
+    DEFAULT_SKILL,
+    DEFAULT_FUA,
+  ],
+  comboDot: 0,
+  errRopeEidolon: 0,
+  relicSets: [
+    [Sets.IronCavalryAgainstTheScourge, Sets.IronCavalryAgainstTheScourge],
+    [Sets.ThiefOfShootingMeteor, Sets.WatchmakerMasterOfDreamMachinations],
+    [Sets.TheWindSoaringValorous, Sets.TheWindSoaringValorous],
+    [Sets.TheAshblazingGrandDuke, Sets.TheAshblazingGrandDuke],
+    RELICS_2P_BREAK_EFFECT_SPEED,
+    ...SPREAD_RELICS_4P_GENERAL_CONDITIONALS,
+  ],
+  ornamentSets: [
+    Sets.ForgeOfTheKalpagniLantern,
+    Sets.TaliaKingdomOfBanditry,
+    Sets.TheWondrousBananAmusementPark,
+    Sets.FirmamentFrontlineGlamoth,
+    Sets.GiantTreeOfRaptBrooding,
+    ...SPREAD_ORNAMENTS_2P_FUA,
+    ...SPREAD_ORNAMENTS_2P_SUPPORT,
+  ],
+  teammates: [
+    {
+      characterId: TrailblazerHarmonyStelle.id,
+      lightCone: DanceDanceDance.id,
+      characterEidolon: 6,
+      lightConeSuperimposition: 5,
+    },
+    {
+      characterId: TheDahlia.id,
+      lightCone: NeverForgetHerFlame.id,
+      characterEidolon: 0,
+      lightConeSuperimposition: 1,
+    },
+    {
+      characterId: Fugue.id,
+      lightCone: ResolutionShinesAsPearlsOfSweat.id,
+      characterEidolon: 0,
+      lightConeSuperimposition: 5,
+    },
+  ],
+})
+
 const scoring = (): ScoringMetadata => ({
   stats: {
     [Stats.ATK]: 1.00,
@@ -398,9 +472,10 @@ const scoring = (): ScoringMetadata => ({
     PresetEffects.VALOROUS_SET,
     PresetEffects.WARRIOR_SET,
   ],
-  sortOption: SortOption.FUA_HEAL,
-  addedColumns: [SortOption.OHB],
+  sortOption: SortOption.COMBO,
+  addedColumns: [SortOption.OHB, SortOption.FUA_HEAL],
   hiddenColumns: [SortOption.DOT],
+  simulation: simulation(),
 })
 
 const display = {

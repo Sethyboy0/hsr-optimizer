@@ -115,6 +115,25 @@ function leaks(str: string) {
 const forkChangelogContent: ChangelogContent[] = [
   {
     title: 'Sethyboy0 Fork Change',
+    date: '2026-03-26',
+    content: [
+      `Rebased on latest main for no particular reason`,
+      `Changed Jiaoqiu's default team to have DH:PT as the sustain and Cipher as the other support`,
+      `Updated metadata format again`,
+    ],
+  },
+  {
+    title: 'Sethyboy0 Fork Change',
+    date: '2025-12-31',
+    content: [
+      `Rebased on latest main to get the Dahlia added`,
+      `Swapped Ruan Mei for Dahlia in Lingsha's default team`,
+      `Changed default HMC light cone to DDD for Lingsha's default team`,
+      `Converted metadata to new format with constants`,
+    ],
+  },
+  {
+    title: 'Sethyboy0 Fork Change',
     date: '2025-08-16',
     content: [
       `Started a changelog for the fork`,

@@ -33,7 +33,7 @@ import { TsUtils } from 'lib/utils/TsUtils'
 
 import { Eidolon } from 'types/character'
 import { CharacterConfig } from 'types/characterConfig'
-import { ScoringMetadata } from 'types/metadata'
+import {ScoringMetadata, SimulationMetadata} from 'types/metadata'
 
 import { CharacterConditionalsController } from 'types/conditionals'
 import {
@@ -41,7 +41,33 @@ import {
   OptimizerContext,
 } from 'types/optimizer'
 
-import { AbilityKind } from 'lib/optimization/rotation/turnAbilityConfig'
+import {
+  AbilityKind,
+  DEFAULT_FUA, DEFAULT_SKILL,
+  DEFAULT_ULT,
+  NULL_TURN_ABILITY_NAME
+} from 'lib/optimization/rotation/turnAbilityConfig'
+import {
+  RELICS_2P_BREAK_EFFECT_SPEED,
+  SPREAD_ORNAMENTS_2P_FUA, SPREAD_ORNAMENTS_2P_SUPPORT,
+  SPREAD_RELICS_4P_GENERAL_CONDITIONALS
+} from "lib/scoring/scoringConstants";
+import {TrailblazerHarmonyStelle} from "lib/conditionals/character/8000/TrailblazerHarmony";
+import {DanceDanceDance} from "lib/conditionals/lightcone/4star/DanceDanceDance";
+import {TheDahlia} from "lib/conditionals/character/1300/TheDahlia";
+import {NeverForgetHerFlame} from "lib/conditionals/lightcone/5star/NeverForgetHerFlame";
+import {Fugue} from "lib/conditionals/character/1200/Fugue";
+import {ResolutionShinesAsPearlsOfSweat} from "lib/conditionals/lightcone/4star/ResolutionShinesAsPearlsOfSweat";
+import {AlongThePassingShore} from "lib/conditionals/lightcone/5star/AlongThePassingShore";
+import {Acheron} from "lib/conditionals/character/1300/Acheron";
+import {Sparkle} from "lib/conditionals/character/1300/Sparkle";
+import {EarthlyEscapade} from "lib/conditionals/lightcone/5star/EarthlyEscapade";
+import {Aventurine} from "lib/conditionals/character/1300/Aventurine";
+import {InherentlyUnjustDestiny} from "lib/conditionals/lightcone/5star/InherentlyUnjustDestiny";
+import {PermansorTerrae} from "lib/conditionals/character/1400/PermansorTerrae";
+import {ThoughWorldsApart} from "lib/conditionals/lightcone/5star/ThoughWorldsApart";
+import {Cipher} from "lib/conditionals/character/1400/Cipher";
+import {LiesAflutterInTheWind} from "lib/conditionals/lightcone/5star/LiesAflutterInTheWind";
 export const JiaoqiuEntities = createEnum('Jiaoqiu')
 export const JiaoqiuAbilities: AbilityKind[] = [
   AbilityKind.BASIC,
@@ -294,6 +320,78 @@ const conditionals = (e: Eidolon, withContent: boolean): CharacterConditionalsCo
   }
 }
 
+const simulation = (): SimulationMetadata => ({
+  parts: {
+    [Parts.Body]: [
+      Stats.EHR,
+      Stats.ATK_P,
+      Stats.CR,
+      Stats.CD,
+    ],
+    [Parts.Feet]: [
+      Stats.ATK_P,
+      Stats.SPD,
+    ],
+    [Parts.PlanarSphere]: [
+      Stats.ATK_P,
+      Stats.Fire_DMG,
+    ],
+    [Parts.LinkRope]: [
+      Stats.ERR,
+    ],
+  },
+  substats: [
+    Stats.EHR,
+    Stats.ATK_P,
+    Stats.ATK,
+    Stats.CR,
+    Stats.CD,
+  ],
+  comboTurnAbilities: [
+    NULL_TURN_ABILITY_NAME,
+    DEFAULT_ULT,
+    DEFAULT_SKILL,
+    DEFAULT_SKILL,
+    DEFAULT_SKILL,
+  ],
+  comboDot: 16,
+  relicSets: [
+    [Sets.PrisonerInDeepConfinement, Sets.PrisonerInDeepConfinement],
+    RELICS_2P_BREAK_EFFECT_SPEED,
+    ...SPREAD_RELICS_4P_GENERAL_CONDITIONALS,
+  ],
+  ornamentSets: [
+    Sets.FirmamentFrontlineGlamoth,
+    Sets.ForgeOfTheKalpagniLantern,
+    Sets.GiantTreeOfRaptBrooding,
+    ...SPREAD_ORNAMENTS_2P_SUPPORT,
+  ],
+  breakpoints: {
+    [Stats.EHR]: 1.40,
+  },
+  teammates: [
+    {
+      characterId: Acheron.id,
+      lightCone: AlongThePassingShore.id,
+      characterEidolon: 0,
+      lightConeSuperimposition: 1,
+    },
+    {
+      characterId: Cipher.id,
+      lightCone: LiesAflutterInTheWind.id,
+      characterEidolon: 0,
+      lightConeSuperimposition: 1,
+    },
+    {
+      characterId: PermansorTerrae.id,
+      lightCone: ThoughWorldsApart.id,
+      characterEidolon: 0,
+      lightConeSuperimposition: 1,
+    },
+  ],
+})
+
+
 const scoring = (): ScoringMetadata => ({
   stats: {
     [Stats.ATK]: 0.5,
@@ -329,6 +427,7 @@ const scoring = (): ScoringMetadata => ({
   hiddenColumns: [
     SortOption.FUA,
   ],
+  simulation: simulation(),
 })
 
 const display = {
