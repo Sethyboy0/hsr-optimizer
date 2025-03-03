@@ -189,7 +189,7 @@ export const SettingsDrawer = () => {
             </Form.Item>
           </Flex>
           <Flex justify='space-between' align='center'>
-            <Text>Optimizer Expanded info panel position</Text>
+            <Text>{t('AllowWeirdDPSBuilds.Label')/* Enable DPS scores for unconventional characters */}</Text>
             <Form.Item name={SettingOptions.AllowWeirdDPSBuilds.name}>
               <Select
                 style={{ width: 500 }}
