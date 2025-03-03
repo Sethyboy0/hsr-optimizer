@@ -4264,6 +4264,69 @@ function getScoringMetadata(): Record<string, ScoringMetadata> {
           Constants.Stats.ERR,
         ],
       },
+      simulation: {
+        weirdDPS: true,
+        parts: {
+          [Parts.Body]: [
+            Stats.EHR,
+            Stats.ATK_P,
+            Stats.CR,
+            Stats.CD,
+          ],
+          [Parts.Feet]: [
+            Stats.ATK_P,
+            Stats.SPD,
+          ],
+          [Parts.PlanarSphere]: [
+            Stats.ATK_P,
+            Stats.Fire_DMG,
+          ],
+          [Parts.LinkRope]: [
+            Stats.ERR,
+          ],
+        },
+        substats: [
+          Stats.EHR,
+          Stats.ATK_P,
+          Stats.ATK,
+          Stats.CR,
+          Stats.CD,
+        ],
+        comboAbilities: [NULL, SKILL, SKILL, BASIC, ULT],
+        comboDot: 16,
+        comboBreak: 0,
+        relicSets: [
+          [Sets.PrisonerInDeepConfinement, Sets.PrisonerInDeepConfinement],
+          ...SPREAD_RELICS_4P_GENERAL_CONDITIONALS,
+        ],
+        ornamentSets: [
+          Sets.FirmamentFrontlineGlamoth,
+          ...SPREAD_ORNAMENTS_2P_SUPPORT,
+        ],
+        breakpoints: {
+          [Stats.EHR]: 1.40,
+        },
+        teammates: [
+          {
+            characterId: '1308', // Acheron
+            lightCone: '23024', // Along the Passing Shore
+            characterEidolon: 0,
+            lightConeSuperimposition: 1,
+          },
+          {
+            characterId: '1306', // Sparkle
+            lightCone: '23021', // Earthly Escapade
+            characterEidolon: 0,
+            lightConeSuperimposition: 1,
+          },
+          {
+            characterId: '1304', // Fugue
+            lightCone: '23023', // Inherently Unjust Destiny
+            characterEidolon: 0,
+            lightConeSuperimposition: 1,
+          },
+        ],
+      },
       presets: [
         PresetEffects.PRISONER_SET,
       ],
