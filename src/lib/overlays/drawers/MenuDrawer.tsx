@@ -23,7 +23,6 @@ import {
 import { CoffeeIcon } from 'icons/CoffeeIcon'
 import { DiscordIcon } from 'icons/DiscordIcon'
 import { GithubIcon } from 'icons/GithubIcon'
-import { officialOnly } from 'lib/constants/constants'
 import {
   OpenCloseIDs,
   setOpen,
@@ -169,19 +168,14 @@ const MenuDrawer = () => {
         </Typography.Link>,
         'link github',
       ),
-      officialOnly
-        ? getItem(
-          <Typography.Link href='https://fribbels.github.io/hsr-optimizer/' target='_blank' rel='noopener noreferrer'>
-            <LinkOutlined style={{ marginRight: 5 }} /> {t('Links.Leaks') /* Beta content */}
-          </Typography.Link>,
-          'link leaks',
-        )
-        : getItem(
-          <Typography.Link href='https://starrailoptimizer.github.io/' target='_blank' rel='noopener noreferrer'>
-            <LinkOutlined style={{ marginRight: 5 }} /> {t('Links.Unleak') /* No leaks */}
-          </Typography.Link>,
-          'link leaks free',
-        ),
+      getItem(
+        <Typography.Link href='https://fribbels.github.io/hsr-optimizer/' target='_blank' rel='noopener noreferrer'>
+          <LinkOutlined style={{ marginRight: 5 }}/>
+          {' '}
+          Official Version
+        </Typography.Link>,
+        'link official',
+      ),
     ]),
   ], [t])
 
