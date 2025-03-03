@@ -62,7 +62,7 @@ export function LayoutHeader() {
                 style={{ fontWeight: 600, fontSize: 22 }}
                 color='inherit'
               >
-                Fribbels Honkai Star Rail Optimizer
+                Fribbels (Non-Official Sethyboy0 Meme Fork)
               </Typography>
             </Flex>
           </a>
