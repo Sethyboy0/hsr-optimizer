@@ -4195,6 +4195,7 @@ function getScoringMetadata(): Record<string, ScoringMetadata> {
         ],
       },
       simulation: {
+        weirdDPS: true,
         parts: {
           [Parts.Body]: [
             Stats.ATK_P,

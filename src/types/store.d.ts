@@ -199,6 +199,7 @@ export type UserSettings = {
   PermutationsSidebarBehavior: string
   RelicPotentialLoadBehavior: string
   ExpandedInfoPanelPosition: string
+  AllowWeirdDPSBuilds: string
 }
 
 // The JSON format we save to localstorage / save file

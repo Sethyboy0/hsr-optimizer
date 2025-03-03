@@ -5433,6 +5433,11 @@ interface Resources {
       "Label": "Relic potential scoring on load",
       "OnStartup": "Default: Automatically score relics on page load",
       "Manual": "Only score relics when \"Reapply scores\" is clicked (faster page load)"
+    },
+    "AllowWeirdDPSBuilds": {
+      "Label": "Whether to enable DPS scores for unconventional characters",
+      "Enabled": "Add DPS score to some unconventional characters.",
+      "Disabled": "Default: Unconventional DPS characters are not given a DPS score."
     }
   },
   "sidebar": {

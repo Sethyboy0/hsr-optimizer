@@ -53,6 +53,7 @@ export type SimulationMetadata = {
   breakpoints?: {
     [stat: string]: number
   }
+  weirdDPS?: boolean
 }
 
 export type ElementalResPenType =
