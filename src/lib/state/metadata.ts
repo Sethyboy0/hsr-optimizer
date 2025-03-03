@@ -4614,7 +4614,8 @@ function getScoringMetadata(): Record<string, ScoringMetadata> {
         ],
         comboAbilities: [NULL, ULT, FUA, SKILL, SKILL, SKILL, FUA],
         comboDot: 0,
-        comboBreak: 1,
+        comboBreak: 0,
+        errRopeEidolon: 0,
         relicSets: [
           [Sets.IronCavalryAgainstTheScourge, Sets.IronCavalryAgainstTheScourge],
           [Sets.ThiefOfShootingMeteor, Sets.WatchmakerMasterOfDreamMachinations],
@@ -4628,6 +4629,7 @@ function getScoringMetadata(): Record<string, ScoringMetadata> {
           Sets.TheWondrousBananAmusementPark,
           Sets.TaliaKingdomOfBanditry,
           Sets.DuranDynastyOfRunningWolves,
+          Sets.FirmamentFrontlineGlamoth,
           Sets.InertSalsotto,
           ...SPREAD_ORNAMENTS_2P_SUPPORT,
         ],
