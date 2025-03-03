@@ -4228,11 +4228,19 @@ function getScoringMetadata(): Record<string, ScoringMetadata> {
         comboBreak: 1,
         relicSets: [
           [Sets.IronCavalryAgainstTheScourge, Sets.IronCavalryAgainstTheScourge],
+          [Sets.ThiefOfShootingMeteor, Sets.WatchmakerMasterOfDreamMachinations],
+          [Sets.TheWindSoaringValorous, Sets.TheWindSoaringValorous],
+          [Sets.TheAshblazingGrandDuke, Sets.TheAshblazingGrandDuke],
+          RELICS_2P_BREAK_EFFECT_SPEED,
           ...SPREAD_RELICS_4P_GENERAL_CONDITIONALS,
         ],
         ornamentSets: [
           Sets.ForgeOfTheKalpagniLantern,
+          Sets.TheWondrousBananAmusementPark,
           Sets.TaliaKingdomOfBanditry,
+          Sets.DuranDynastyOfRunningWolves,
+          Sets.InertSalsotto,
+          ...SPREAD_ORNAMENTS_2P_SUPPORT,
         ],
         teammates: [
           {
@@ -4248,9 +4256,9 @@ function getScoringMetadata(): Record<string, ScoringMetadata> {
             lightConeSuperimposition: 1,
           },
           {
-            characterId: '1301', // Gallagher
-            lightCone: '20015', // Multi
-            characterEidolon: 6,
+            characterId: '1225', // Fugue
+            lightCone: '21015', // Resolution Luka Sweat
+            characterEidolon: 0,
             lightConeSuperimposition: 5,
           },
         ],
