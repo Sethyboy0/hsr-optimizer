@@ -4297,10 +4297,13 @@ function getScoringMetadata(): Record<string, ScoringMetadata> {
         comboBreak: 0,
         relicSets: [
           [Sets.PrisonerInDeepConfinement, Sets.PrisonerInDeepConfinement],
+          RELICS_2P_BREAK_EFFECT_SPEED,
           ...SPREAD_RELICS_4P_GENERAL_CONDITIONALS,
         ],
         ornamentSets: [
           Sets.FirmamentFrontlineGlamoth,
+          Sets.ForgeOfTheKalpagniLantern,
+          Sets.GiantTreeOfRaptBrooding,
           ...SPREAD_ORNAMENTS_2P_SUPPORT,
         ],
         breakpoints: {
