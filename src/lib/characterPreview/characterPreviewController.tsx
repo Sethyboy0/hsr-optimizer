@@ -21,6 +21,7 @@ import { Character } from 'types/character'
 import { CustomImageConfig, CustomImagePayload } from 'types/customImage'
 import { DBMetadataCharacter, DBMetadataLightCone, ElementalDamageType, ImageCenter, ShowcaseTemporaryOptions } from 'types/metadata'
 import { Relic } from 'types/relic'
+import {isWeirdDPSBlocked} from "../state/utils";
 
 export type ShowcaseMetadata = {
   characterId: string
@@ -168,7 +169,7 @@ export function getShowcaseSimScoringResult(
   showcaseMetadata: ShowcaseMetadata,
   showcaseTemporaryOptions: Record<string, ShowcaseTemporaryOptions>,
 ) {
-  if (scoringType != SIMULATION_SCORE) {
+  if (scoringType != SIMULATION_SCORE || isWeirdDPSBlocked(showcaseMetadata.characterMetadata)) {
     return null
   }
 

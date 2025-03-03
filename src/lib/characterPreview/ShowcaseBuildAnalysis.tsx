@@ -9,6 +9,7 @@ import { SimulationScore } from 'lib/scoring/simScoringUtils'
 import { SaveState } from 'lib/state/saveState'
 import React, { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { isWeirdDPSBlocked } from "../state/utils";
 
 const { Text } = Typography
 
@@ -40,6 +41,8 @@ export function ShowcaseBuildAnalysis(props: ShowcaseBuildAnalysisProps) {
     characterMetadata,
   } = showcaseMetadata
 
+  const combatScoreDisabled = characterMetadata.scoringMetadata.simulation == null || isWeirdDPSBlocked(characterMetadata)
+
   return (
     <Flex vertical>
       <Flex justify='center' gap={10}>
@@ -69,11 +72,11 @@ export function ShowcaseBuildAnalysis(props: ShowcaseBuildAnalysisProps) {
             block
             options={[
               {
-                label: characterMetadata.scoringMetadata.simulation == null
+                label: combatScoreDisabled
                   ? t('CharacterPreview.AlgorithmSlider.Labels.CombatScoreTBD')/* Combat Score (TBD) */
                   : t('CharacterPreview.AlgorithmSlider.Labels.CombatScore'), /* Combat Score */
                 value: SIMULATION_SCORE,
-                disabled: characterMetadata.scoringMetadata.simulation == null,
+                disabled: combatScoreDisabled,
               },
               {
                 label: t('CharacterPreview.AlgorithmSlider.Labels.StatScore'), /* Stat Score */
@@ -118,12 +121,12 @@ export function ShowcaseBuildAnalysis(props: ShowcaseBuildAnalysisProps) {
               {
                 label: t('CharacterPreview.DetailsSlider.Labels.CombatStats'), /* Combat Stats */
                 value: COMBAT_STATS,
-                disabled: characterMetadata.scoringMetadata.simulation == null || scoringType == CHARACTER_SCORE,
+                disabled: combatScoreDisabled || scoringType == CHARACTER_SCORE,
               },
               {
                 label: t('CharacterPreview.DetailsSlider.Labels.DMGUpgrades'), /* Damage Upgrades */
                 value: DAMAGE_UPGRADES,
-                disabled: characterMetadata.scoringMetadata.simulation == null || scoringType == CHARACTER_SCORE,
+                disabled: combatScoreDisabled || scoringType == CHARACTER_SCORE,
               },
             ]}
           />

@@ -37,6 +37,11 @@ export const SettingOptions = {
     Above: 'Above',
     Below: 'Below',
   },
+  AllowWeirdDPSBuilds: {
+    name: 'AllowWeirdDPSBuilds',
+    Enabled: 'Enabled',
+    Disabled: 'Disabled',
+  },
 } as const
 
 export const DefaultSettingOptions: Record<keyof UserSettings, string> = {
@@ -44,6 +49,8 @@ export const DefaultSettingOptions: Record<keyof UserSettings, string> = {
   [SettingOptions.PermutationsSidebarBehavior.name]: SettingOptions.PermutationsSidebarBehavior.ShowXL,
   [SettingOptions.RelicPotentialLoadBehavior.name]: SettingOptions.RelicPotentialLoadBehavior.ScoreAtStartup,
   [SettingOptions.ExpandedInfoPanelPosition.name]: SettingOptions.ExpandedInfoPanelPosition.Below,
+  // This setting would be disabled in prod but is enabled on this branch.
+  [SettingOptions.AllowWeirdDPSBuilds.name]: SettingOptions.AllowWeirdDPSBuilds.Enabled,
 } as Record<keyof UserSettings, string>
 
 export const SettingsDrawer = () => {
@@ -102,6 +109,19 @@ export const SettingsDrawer = () => {
     {
       value: SettingOptions.ExpandedInfoPanelPosition.Below,
       label: <span>Default: Show expanded info below relics preview</span>,
+    },
+  ]
+
+  const optionsAllowWeirdDPSBuilds = [
+    {
+      value: SettingOptions.AllowWeirdDPSBuilds.Enabled,
+      label:
+  <span>{t('AllowWeirdDPSBuilds.Enabled')/* Add DPS score to some unconventional characters. */}</span>,
+    },
+    {
+      value: SettingOptions.AllowWeirdDPSBuilds.Disabled,
+      label:
+  <span>{t('AllowWeirdDPSBuilds.Disabled')/* Default: Unconventional DPS characters are not given a DPS score. */}</span>,
     },
   ]
 
@@ -164,6 +184,16 @@ export const SettingsDrawer = () => {
               <Select
                 style={{ width: 500 }}
                 options={optionsExpandedInfoPanelPosition}
+                optionRender={(option) => <SelectOptionWordWrap>{option.label}</SelectOptionWordWrap>}
+              />
+            </Form.Item>
+          </Flex>
+          <Flex justify='space-between' align='center'>
+            <Text>Optimizer Expanded info panel position</Text>
+            <Form.Item name={SettingOptions.AllowWeirdDPSBuilds.name}>
+              <Select
+                style={{ width: 500 }}
+                options={optionsAllowWeirdDPSBuilds}
                 optionRender={(option) => <SelectOptionWordWrap>{option.label}</SelectOptionWordWrap>}
               />
             </Form.Item>
