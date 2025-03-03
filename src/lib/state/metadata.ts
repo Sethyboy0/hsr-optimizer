@@ -4625,6 +4625,7 @@ function getScoringMetadata(): Record<string, ScoringMetadata> {
         comboAbilities: [NULL, ULT, FUA, SKILL, SKILL, SKILL, FUA],
         comboDot: 0,
         comboBreak: 1,
+        errRopeEidolon: 0,
         relicSets: [
           [Sets.IronCavalryAgainstTheScourge, Sets.IronCavalryAgainstTheScourge],
           [Sets.ThiefOfShootingMeteor, Sets.WatchmakerMasterOfDreamMachinations],
