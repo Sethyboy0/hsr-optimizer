@@ -4306,6 +4306,7 @@ function getScoringMetadata(): Record<string, ScoringMetadata> {
           Sets.TheWondrousBananAmusementPark,
           Sets.TaliaKingdomOfBanditry,
           Sets.DuranDynastyOfRunningWolves,
+          Sets.FirmamentFrontlineGlamoth,
           Sets.InertSalsotto,
           ...SPREAD_ORNAMENTS_2P_SUPPORT,
         ],
