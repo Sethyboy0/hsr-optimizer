@@ -22,7 +22,7 @@ import {
   START_SKILL,
   START_ULT,
   WHOLE_BASIC,
-  WHOLE_SKILL
+  WHOLE_SKILL,
 } from 'lib/optimization/rotation/turnAbilityConfig'
 import { SortOption } from 'lib/optimization/sortOptions'
 import {
@@ -4265,7 +4265,6 @@ function getScoringMetadata(): Record<string, ScoringMetadata> {
         ],
       },
       simulation: {
-        weirdDPS: true,
         parts: {
           [Parts.Body]: [
             Stats.EHR,
@@ -4292,9 +4291,14 @@ function getScoringMetadata(): Record<string, ScoringMetadata> {
           Stats.CR,
           Stats.CD,
         ],
-        comboAbilities: [NULL, SKILL, SKILL, BASIC, ULT],
+        comboTurnAbilities: [
+          NULL_TURN_ABILITY_NAME,
+          DEFAULT_ULT,
+          DEFAULT_SKILL,
+          DEFAULT_SKILL,
+          DEFAULT_SKILL,
+        ],
         comboDot: 16,
-        comboBreak: 0,
         relicSets: [
           [Sets.PrisonerInDeepConfinement, Sets.PrisonerInDeepConfinement],
           RELICS_2P_BREAK_EFFECT_SPEED,
@@ -4612,9 +4616,16 @@ function getScoringMetadata(): Record<string, ScoringMetadata> {
           Stats.CR,
           Stats.CD,
         ],
-        comboAbilities: [NULL, ULT, FUA, SKILL, SKILL, SKILL, FUA],
+        comboTurnAbilities: [
+          NULL_TURN_ABILITY_NAME,
+          DEFAULT_ULT,
+          DEFAULT_FUA,
+          DEFAULT_SKILL,
+          DEFAULT_SKILL,
+          DEFAULT_SKILL,
+          DEFAULT_FUA,
+        ],
         comboDot: 0,
-        comboBreak: 0,
         errRopeEidolon: 0,
         relicSets: [
           [Sets.IronCavalryAgainstTheScourge, Sets.IronCavalryAgainstTheScourge],
