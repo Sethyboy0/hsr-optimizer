@@ -438,7 +438,7 @@ export const SetsOrnaments = {
 } as const
 
 // Delete unreleased data
-export const officialOnly = false
+export const officialOnly = true
 const characters = gameData.characters
 const lightCones = gameData.lightCones
 export const UnreleasedSets: Partial<Record<Sets, boolean>> = {}
