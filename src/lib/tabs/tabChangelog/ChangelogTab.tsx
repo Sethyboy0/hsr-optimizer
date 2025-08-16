@@ -68,7 +68,7 @@ export default function ChangelogTab(): React.JSX.Element {
       }
     }
 
-    const headerText = contentUpdate.date != '' ? `Update ${contentUpdate.date}` : contentUpdate.title
+    const headerText = contentUpdate.date != '' ? `Update ${contentUpdate.date}${contentUpdate.title != '' ? ` - ${contentUpdate.title}` : ''}` : contentUpdate.title
 
     return (
       <Flex vertical>
@@ -111,6 +111,21 @@ export default function ChangelogTab(): React.JSX.Element {
 function leaks(str: string) {
   return officialOnly ? '' : str
 }
+
+const forkChangelogContent: ChangelogContent[] = [
+  {
+    title: 'Sethyboy0 Fork Change',
+    date: '2025-08-16',
+    content: [
+      `Started a changelog for the fork`,
+      `Rebased on latest main`,
+      `Started basing off of main and not beta`,
+      `Changed to non-leak mode`,
+      `Updated metadata to new format`,
+      `Added speed healing set as a valid option for Lingsha`,
+    ],
+  },
+]
 
 function getChangelogContent() {
   const changelog: ChangelogContent[] = [
@@ -1332,5 +1347,5 @@ function getChangelogContent() {
   ]
   // Filter out leaks from changelog
   changelog.map((x) => x.content = x.content.filter((x) => x.length > 0))
-  return changelog
+  return [...forkChangelogContent, ...changelog]
 }
