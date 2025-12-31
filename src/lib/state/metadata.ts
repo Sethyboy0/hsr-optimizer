@@ -90,7 +90,7 @@ import {
   WHEREABOUTS_SHOULD_DREAMS_REST,
   WHY_DOES_THE_OCEAN_SING,
   WORRISOME_BLISSFUL,
-  YET_HOPE_IS_PRICELESS,
+  YET_HOPE_IS_PRICELESS, THE_DAHLIA, STELLE_HARMONY, NEVER_FORGET_HER_FLAME, RESOLUTION_SHINES_AS_PEARLS_OF_SWEAT,
 } from 'lib/simulations/tests/testMetadataConstants'
 import DB from 'lib/state/db'
 import { PresetEffects } from 'lib/tabs/tabOptimizer/optimizerForm/components/RecommendedPresetsButton'
@@ -4920,20 +4920,20 @@ function getScoringMetadata(): Record<string, ScoringMetadata> {
         },
         teammates: [
           {
-            characterId: '1308', // Acheron
-            lightCone: '23024', // Along the Passing Shore
+            characterId: ACHERON,
+            lightCone: ALONG_THE_PASSING_SHORE,
             characterEidolon: 0,
             lightConeSuperimposition: 1,
           },
           {
-            characterId: '1306', // Sparkle
-            lightCone: '23021', // Earthly Escapade
+            characterId: SPARKLE,
+            lightCone: EARTHLY_ESCAPADE,
             characterEidolon: 0,
             lightConeSuperimposition: 1,
           },
           {
-            characterId: '1304', // Fugue
-            lightCone: '23023', // Inherently Unjust Destiny
+            characterId: AVENTURINE,
+            lightCone: INHERENTLY_UNJUST_DESTINY,
             characterEidolon: 0,
             lightConeSuperimposition: 1,
           },
@@ -5290,20 +5290,20 @@ function getScoringMetadata(): Record<string, ScoringMetadata> {
         ],
         teammates: [
           {
-            characterId: '8006', // Stelle
-            lightCone: '21004', // Memories
+            characterId: STELLE_HARMONY,
+            lightCone: DANCE_DANCE_DANCE,
             characterEidolon: 6,
             lightConeSuperimposition: 5,
           },
           {
-            characterId: '1303', // Ruan Mei
-            lightCone: '23019', // Past self
+            characterId: THE_DAHLIA,
+            lightCone: NEVER_FORGET_HER_FLAME,
             characterEidolon: 0,
             lightConeSuperimposition: 1,
           },
           {
-            characterId: '1225', // Fugue
-            lightCone: '21015', // Resolution Luka Sweat
+            characterId: FUGUE,
+            lightCone: RESOLUTION_SHINES_AS_PEARLS_OF_SWEAT,
             characterEidolon: 0,
             lightConeSuperimposition: 5,
           },
