@@ -117,7 +117,7 @@ const forkChangelogContent: ChangelogContent[] = [
     title: 'Sethyboy0 Fork Change',
     date: '2026-03-26',
     content: [
-      `Rebased on latest main for no particular reason`,
+      `Rebased on latest main to catch any new features since last time`,
       `Changed Jiaoqiu's default team to have DH:PT as the sustain and Cipher as the other support`,
       `Updated metadata format again`,
     ],
